@@ -1,6 +1,17 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .forms import ProductForm
 from .models import Product
+
+def product_new_view(request):
+	form = ProductForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+		form = ProductForm()
+	context = {
+		'form': form
+	}
+	return render(request, "products/new.html", context)
 
 # Create your views here.
 def product_detail_view(request, *args, **kwargs):
