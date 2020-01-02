@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
+	<!-- <form method='post'>
+		{#% csrf_token %}
+		 {#{ form.as_p }}
+		 <input type='submit' value='Save'/>
+	</form>
+ -->
+
+	<!--<form action='.' method='POST'>  action='.' subits the form on calling action itself -->
+	<!-- <form action='/products/new' method='POST'>
+		{#% csrf_token %}
+		<input type="text" name="title">
+		<input type="text" name="description">
+		<input type="number" name="price">
+		<input type="text" name="summary">
+		<input type='submit' value='Save'/>
+	</form> -->
+
+
 	<form method='post'>
 		{% csrf_token %}
 		 {{ form.as_p }}
