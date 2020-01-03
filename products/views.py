@@ -3,6 +3,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ProductForm, RawProductForm
 from .models import Product
 
+def product_list_view(request):
+	products = Product.objects.all()
+	context = {
+		"products": products
+	}
+	return render(request, "products/index.html", context)
+
 # default Django form
 def product_new_view(request):
 	initial_data = {
