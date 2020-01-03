@@ -9,7 +9,9 @@ class Product(models.Model):
 		summary = models.TextField();
 
 		def show_absolute_url(self):
-			return f"/products/{self.id}/show"
+			return reverse("products-show", kwargs={"id": self.id})
+			# return f"/products/{self.id}/show"
 
 		def edit_absolute_url(self):
-			return f"/products/{self.id}/edit"
+			return reverse("products-edit", kwargs={"id": self.id})
+			# return f"/products/{self.id}/edit"

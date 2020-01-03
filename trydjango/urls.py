@@ -24,8 +24,8 @@ urlpatterns = [
     path('contact/', contact_view),
     path('home/', home_view),
     path('about/', about_view),
-    path('products', product_list_view),
-    path('products/new', product_new_view),
-    path('products/<int:id>/edit', product_edit_view),
-    path('products/<int:id>/show', product_detail_view)
+    path('products', product_list_view, name="products"),
+    path('products/new', product_new_view, name="products-new"),
+    path('products/<int:id>/edit', product_edit_view, name="products-edit"),
+    path('products/<int:id>/show', product_detail_view, name="products-show")
 ]
