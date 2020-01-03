@@ -1,5 +1,5 @@
 from django.http import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ProductForm, RawProductForm
 from .models import Product
 
@@ -27,10 +27,11 @@ def product_edit_view(request,id):
 	form = ProductForm(request.POST or None, instance=obj)
 	if form.is_valid():
 		form.save()
-	context = {
-		'form': form
-	}
-	return render(request, "products/edit.html", context)
+		product_context = {"product": obj }
+		return redirect("/products/12")
+	else: 
+		context = {'form': form}
+		return render(request, "products/edit.html", context)
 
 # raw html form
 # def product_new_view(request):
@@ -50,8 +51,8 @@ def product_edit_view(request,id):
 # 	return render(request, "products/new.html", context)
 
 # Create your views here.
-def product_detail_view(request, *args, **kwargs):
-	obj = Product.objects.get(id=2)
+def product_detail_view(request, id):
+	obj = Product.objects.get(id=id)
 	product_context = {
 		"product": obj
 	}
