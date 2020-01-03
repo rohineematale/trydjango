@@ -17,8 +17,8 @@ def product_new_view(request):
 	}
 	return render(request, "products/new.html", context)
 
-def product_edit_view(request):
-	obj = Product.objects.get(id=1)
+def product_edit_view(request,id):
+	obj = Product.objects.get(id=id)
 	form = ProductForm(request.POST or None, instance=obj)
 	if form.is_valid():
 		form.save()
