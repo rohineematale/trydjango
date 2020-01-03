@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from .forms import ProductForm, RawProductForm
 from .models import Product
 
@@ -18,7 +18,12 @@ def product_new_view(request):
 	return render(request, "products/new.html", context)
 
 def product_edit_view(request,id):
-	obj = Product.objects.get(id=id)
+	# obj = Product.objects.get(id=id)
+	# obj = get_object_or_404(Product, id=id)
+	try:
+		obj = Product.objects.get(id=id)
+	except Product.DoesNotExist:
+		raise Http404
 	form = ProductForm(request.POST or None, instance=obj)
 	if form.is_valid():
 		form.save()
