@@ -9,6 +9,7 @@
 				<th>Description</th>
 				<th>Price</th>
 				<th>Summary</th>
+				<th>Manage</th>
 			<tr/>
 		</thead>
 		{% for product in products %}
@@ -19,6 +20,9 @@
 					<td>{{ product.description }}</td>
 					<td>{{ product.price }}</td>
 					<td>{{ product.summary }}</td>
+					<td><a href="{{ product.show_absolute_url }}">Show</a> | 
+							<a href="{{ product.edit_absolute_url }}">Edit</a>
+					</td>
 				</tr>
 			</tbody>
 		{% endfor %}
