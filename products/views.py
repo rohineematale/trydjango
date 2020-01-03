@@ -28,10 +28,10 @@ def product_edit_view(request,id):
 	if form.is_valid():
 		form.save()
 		product_context = {"product": obj }
-		return redirect("/products/12")
+		return redirect("/products/{0}".format(id))
 	else: 
 		context = {'form': form}
-		return render(request, "products/edit.html", context)
+		return render(request, "products/{0}/edit.html".format(id), context)
 
 # raw html form
 # def product_new_view(request):
