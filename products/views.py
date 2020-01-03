@@ -5,7 +5,10 @@ from .models import Product
 
 # default Django form
 def product_new_view(request):
-	form = ProductForm(request.POST or None)
+	initial_data = {
+		"title": "sample text for intial data"
+	}
+	form = ProductForm(request.POST or None, initial=initial_data)
 	if form.is_valid():
 		form.save()
 		form = ProductForm()
@@ -13,6 +16,16 @@ def product_new_view(request):
 		'form': form
 	}
 	return render(request, "products/new.html", context)
+
+def product_edit_view(request):
+	obj = Product.objects.get(id=1)
+	form = ProductForm(request.POST or None, instance=obj)
+	if form.is_valid():
+		form.save()
+	context = {
+		'form': form
+	}
+	return render(request, "products/edit.html", context)
 
 # raw html form
 # def product_new_view(request):
