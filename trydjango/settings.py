@@ -46,9 +46,11 @@ INSTALLED_APPS = [
     # newly added
     'pages',
     'products',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
+    'djdev_panel.middleware.DebugMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
